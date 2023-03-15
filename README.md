@@ -1,6 +1,6 @@
 # AutosRUs' MechaCar
 ## The purpose of this project:
-The purpose of this project is to analyze production data for AutosRUs' MechaCar prototypes and provide insights that can help the manufacturing team. It involves performing multiple linear regression analysis to predict the mpg of MechaCar prototypes, collecting summary statistics on the suspension coils' PSI from manufacturing lots, running t-tests to determine if the lots are statistically different from the mean population, and designing a statistical study to compare the MechaCar's vehicle performance against vehicles from other manufacturers.
+The purpose of this project is to analyze production data for AutosRUs' MechaCar prototypes and provide insights that can help the manufacturing team. It involves performing multiple linear regression analyses to predict the mpg of MechaCar prototypes, collecting summary statistics on the suspension coils' PSI from manufacturing lots, running t-tests to determine if the lots are statistically different from the mean population, and designing a statistical study to compare the MechaCar's vehicle performance against vehicles from other manufacturers.
 
 ![data-16-manufacturing-lot](https://user-images.githubusercontent.com/111480084/225206941-e3d82267-653c-4487-b4c2-8679612e4406.png)
 
