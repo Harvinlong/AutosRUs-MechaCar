@@ -1,4 +1,11 @@
 # Statistics-and-R
+## The purpose of this project:
+The purpose of this project is to analyze production data for AutosRUs' MechaCar prototypes and provide insights that can help the manufacturing team. It involves performing multiple linear regression analysis to predict the mpg of MechaCar prototypes, collecting summary statistics on the suspension coils' PSI from manufacturing lots, running t-tests to determine if the lots are statistically different from the mean population, and designing a statistical study to compare the MechaCar's vehicle performance against vehicles from other manufacturers.
+
+![data-16-manufacturing-lot](https://user-images.githubusercontent.com/111480084/225206941-e3d82267-653c-4487-b4c2-8679612e4406.png)
+
+![data-16-total-summary-data-mean-median-variance-sd](https://user-images.githubusercontent.com/111480084/225206952-65d750cc-05bc-4fe8-b85f-65bb4e7929c8.png)
+
 Linear Regression to Predict MPG:
 
 1. The mpg variable is the only predictor variable in the model, so it is the only variable that could contribute a non-random amount of variance to the response variable. Based on the coefficients table, the mpg variable has a p-value of 2.63e-06, which suggests that it is significantly different from zero. This means that it is likely that the mpg variable is contributing a non-random amount of variance to the response variable.
