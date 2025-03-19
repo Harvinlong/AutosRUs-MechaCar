@@ -1,54 +1,54 @@
-#Part 1:Linear Regression to Predict MPG
-library(dplyr)
-cardata <- read.csv("MechaCar_mpg.csv",header=TRUE, sep = ",")
-View(cardata)
-lmdata = lm(formula = mpg ~ ., data = cardata)
-summary(lmdata)
+# import library
+library(tidyverse) 
 
-#Part 2: Summary Statistics on Suspension Coils
-library(tidyverse)
+# Import and read in the MechaCar_mpg.csv file as a data frame.
+mpg <- read.csv(file ="MechaCar_mpg.csv")
+#mpg
 
-data <- read.table("Suspension_coil.csv",header = TRUE, sep = ",")
-data
+#first five row 
+head(mpg)
 
-total_summary <- data %>%
-  summarize(
-    mean = mean(PSI),
-    median = median(PSI),
-    variance = var(PSI),
-    sd = sd(PSI)
-  )
-#Total summary of the suspension coil’s PSI column
-total_summary
+#Perform linear regression using the lm() function.
+model <- lm (mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance  + AWD  , data=mpg)
+model
+summary(model)
 
-lot_summary <- data %>%
-  group_by(Manufacturing_Lot)%>%
-  summarize(
-    mean=mean(PSI),
-    median=median(PSI),
-    variance=var(PSI),
-    sd=sd(PSI)
-    
-  )
-#Individual summary of the suspension coil’s PSI column
-lot_summary
+#Plot a scatter plot
+ggplot(mpg, aes(mpg, vehicle_weight)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
 
-#Part 3:T-Tests on Suspension Coils
-#If PSI is different from the population mean of 1500
-t.test(data$PSI,mu = 1500)
+#finding correlation between variables 
+cor(mpg$mpg,mpg$vehicle_length)
+cor(mpg$mpg,mpg$vehicle_weight)
+cor(mpg$mpg,mpg$spoiler_angle)
+cor(mpg$mpg,mpg$ground_clearance)
+cor( mpg$AWD ,mpg$mpg)
 
-#If PSI individually different from each population mean of 1500
-#Lot 1
-subset_data <- subset(data, Manufacturing_Lot == "Lot1")
-t.test(subset_data$PSI, mu = 1500)
-#Lot 2
-subset_data <- subset(data, Manufacturing_Lot == "Lot1")
-t.test(subset_data$PSI, mu = 1500)
-#Lot3
-subset_data <- subset(data, Manufacturing_Lot == "Lot1")
-t.test(subset_data$PSI, mu = 1500)
+# read and import suspension coil data onto data frame
+
+suspension_coil <- read.csv(file = "Suspension_Coil.csv")
+
+# check the summary of the PSI 
+total_summary <- summarize(suspension_coil , Mean=mean(PSI) , Median =median(PSI) , Variance = var(PSI) , SD = sd(PSI))
+
+# Lot summary using group by function in R.
+lot_grouping <- group_by(suspension_coil,Manufacturing_Lot)
+Lot_summary <- summarize(lot_grouping , Mean=mean(PSI) , Median =median(PSI) , Variance = var(PSI) , SD = sd(PSI))
+
+# t test for all the lots
+t.test(suspension_coil$PSI,mu=1500)
+
+#for condition of manufacturing lot 1 in data frame
+suspension_coil_lot1 <- subset(suspension_coil , Manufacturing_Lot == 'Lot1')
+t.test(suspension_coil_lot1$PSI , mu=1500)
 
 
+#for condition of manufacturing lot 2 in data frame
+suspension_coil_lot2 <- subset(suspension_coil , Manufacturing_Lot == 'Lot2')
+t.test(suspension_coil_lot2$PSI , mu=1500)
 
 
-
+#for condition of manufacturing lot 3 in data frame
+suspension_coil_lot3 <- subset(suspension_coil , Manufacturing_Lot == 'Lot3')
+t.test(suspension_coil_lot3$PSI , mu=1500)
