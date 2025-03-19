@@ -1,39 +1,92 @@
-# AutosRUs' MechaCar
-## The purpose of this project:
-The purpose of this project is to analyze production data for AutosRUs' MechaCar prototypes and provide insights that can help the manufacturing team. It involves performing multiple linear regression analyses to predict the mpg of MechaCar prototypes, collecting summary statistics on the suspension coils' PSI from manufacturing lots, running t-tests to determine if the lots are statistically different from the mean population, and designing a statistical study to compare the MechaCar's vehicle performance against vehicles from other manufacturers.
+# MechaCar Statistical Analysis
 
-![data-16-manufacturing-lot](https://user-images.githubusercontent.com/111480084/225206941-e3d82267-653c-4487-b4c2-8679612e4406.png)
+## Project Overview
 
-![data-16-total-summary-data-mean-median-variance-sd](https://user-images.githubusercontent.com/111480084/225206952-65d750cc-05bc-4fe8-b85f-65bb4e7929c8.png)
+The MechaCar prototype, developed by **AutosRUs**, is facing production challenges that are impeding manufacturing progress. This project aims to analyze production data to provide insights that can assist the manufacturing team in optimizing performance. The key analyses conducted include:
 
-Linear Regression to Predict MPG:
+- **Multiple linear regression analysis** to determine which factors influence **miles per gallon (mpg)**.
+- **Suspension coil performance analysis** by summarizing the PSI levels from manufacturing lots.
+- **T-tests** to assess whether manufacturing lots differ statistically from the population mean.
+- **Comparative study** of MechaCar’s vehicle performance against competitors.
 
-1. The mpg variable is the only predictor variable in the model, so it is the only variable that could contribute a non-random amount of variance to the response variable. Based on the coefficients table, the mpg variable has a p-value of 2.63e-06, which suggests that it is significantly different from zero. This means that it is likely that the mpg variable is contributing a non-random amount of variance to the response variable.
+## Linear Regression Analysis to Predict MPG
 
-3. The slope of the linear model is not necessarily considered to be zero. In this particular model, the coefficient for mpg is significantly different from zero (p-value = 2.63e-06), which suggests that the slope is not zero.
+The dataset includes **mpg test results** for 50 MechaCar prototypes, along with various design features such as:
 
-4. It is not clear from the output provided whether the linear model effectively predicts mpg values for MechaCar prototypes. To determine the effectiveness of the model, I would need to evaluate the model's performance on a test set of data or use cross-validation to estimate the model's generalization error. I would also need to consider whether the model's assumptions are reasonable for the data and whether the model is appropriate for the problem at hand.
+- **Vehicle length**
+- **Vehicle weight**
+- **Spoiler angle**
+- **All-wheel drive (AWD)**
+- **Ground clearance**
 
-Visualizations for the Trip Analysis:
-Based on this summary, it seems that the values in the Manufacturing_Lot column are relatively close to each other for Lot1 and Lot2, but there is more variation in the values for Lot3. The standard deviation for Lot3 is much larger than for the other two lots, which suggests that the values are more spread out.
+### Key Findings
 
-T-Tests on Suspension Coils:
+The multiple linear regression analysis was conducted to predict **mpg** based on these variables. The regression equation is:
 
-The t-value of -1.8931 indicates the difference between the sample mean (1498.78) and the specified value (1500) in units of the standard error of the mean.
+$$
+mpg = -104.0 + 6.267(	ext{vehicle length}) + 0.001(	ext{vehicle weight}) + 0.069(	ext{spoiler angle}) + 3.546(	ext{ground clearance}) - 3.411(	ext{AWD})
+$$
 
-The df (degrees of freedom) value of 149 is the number of observations in the sample minus 1.
+- **Significant Predictors:**
 
-The p-value of 0.06028 is the probability of obtaining a t-value as extreme as the one observed, given that the null hypothesis (the mean is equal to 1500) is true. A p-value less than the significance level (often set at 0.05) suggests that the null hypothesis can be rejected. In this case, the p-value is not less than 0.05, so we cannot reject the null hypothesis.
+  - **Vehicle length (p-value = 2.60e-12)**: Strongly correlated with mpg.
+  - **Ground clearance (p-value = 5.21e-08)**: Also a significant factor.
 
-Overall, the results of the t-test suggest that the mean of the PSI column is not significantly different from 1500, but it is close to that value. The 95% confidence interval includes the value of 1500, which supports this conclusion.
+- **Model Performance:**
 
-Study Design: MechaCar vs Competition:
+  - **R-squared = 0.7149**, indicating a strong relationship between independent variables and mpg.
+  - The slope is **not zero**, meaning changes in vehicle characteristics influence mpg.
 
-Fuel costs are a top concern for many consumers. These costs vary based on the type of vehicle, with luxury cars requiring more expensive fuel. When purchasing a car, individuals consider their budget and fuel consumption needs. The focus of this experiment is to evaluate fuel efficiency. Market prices for fuel can fluctuate, but fuel efficiency ultimately affects the amount of gasoline consumed. The experiment will test fuel efficiency in two ways: first, by measuring fuel efficiency on both highways and local roads with a full tank of fuel; and second, by testing fuel efficiency in different weather conditions, such as summer and winter, with a full tank of fuel. The T-test will be used to compare the average results of the experiment to the population average to determine fuel efficiency.
+## Suspension Coil Analysis
 
+### Manufacturing Lot Summary
 
+The suspension coil PSI levels were analyzed to determine if they met design specifications (variance ≤ 100 PSI).
 
+- **Overall Manufacturing Lot Variance:** 62 PSI (**within specification**)
+- **Variance by Lot:**
+  - **Lot 1:** 1 PSI (**meets specification**)
+  - **Lot 2:** 7.5 PSI (**meets specification**)
+  - **Lot 3:** 170 PSI (**exceeds specification**, indicating quality control issues)
 
+## T-Test Analysis on Suspension Coils
 
+T-tests were conducted to determine if the PSI levels in different manufacturing lots significantly differ from the population mean (1500 PSI).
 
+- **All Lots Combined:** p-value = **0.06028** (> 0.05) → No significant difference.
+- **Lot 1:** p-value = **1.00** (> 0.05) → No significant difference.
+- **Lot 2:** p-value = **0.6072** (> 0.05) → No significant difference.
+- **Lot 3:** p-value = **0.04168** (< 0.05) → **Significant difference**, confirming high variance in Lot 3.
+
+## Comparative Study: MechaCar vs. Competitors
+
+To assess MechaCar’s market position, fuel efficiency was chosen as a key metric for comparison with competitors.
+
+### Hypothesis Testing:
+
+- **Null Hypothesis (H₀):** Vehicle weight does not affect mpg.
+- **Alternative Hypothesis (H₁):** Vehicle weight affects mpg.
+
+### Statistical Test Used:
+
+- **T-test** to determine if there is a significant correlation between vehicle weight and mpg.
+- Required Data: **Vehicle weight and mpg data for MechaCar and competitors.**
+
+### Study Design:
+
+The experiment will assess fuel efficiency under two conditions:
+
+1. **Highway vs. local road fuel consumption** using a full tank of fuel.
+2. **Seasonal variation in fuel efficiency**, comparing performance in winter and summer.
+
+## Conclusion
+
+This analysis provides valuable insights into the MechaCar prototype:
+
+- **Vehicle length and ground clearance** are the strongest predictors of mpg.
+- **Lot 3 suspension coils** show **high variance**, failing quality standards.
+- **T-tests confirm Lot 3’s inconsistency**, while other lots meet expectations.
+- **Comparative study with competitors** suggests further research on fuel efficiency improvements.
+
+Addressing these findings will enhance **MechaCar’s production quality, vehicle performance, and market competitiveness**.
 
